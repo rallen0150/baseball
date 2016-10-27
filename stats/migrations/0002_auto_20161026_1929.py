@@ -22,6 +22,9 @@ def add_all_data(apps, schema_editor):
                                  given_name=info["nameGiven"], weight=info["weight"], height=info["height"], bat=info["bats"],
                                  throw=info["throws"], debut=info["debut"], last_game=info["finalGame"], retro=info["retroID"],
                                  bbref=info["bbrefID"])
+
+                    ## FOR INTFIELDS TRY TO USE Master.objects.create(birth_year=info.get("birthYear", None))
+
     # raise Exception ("BOOM!")
 
     with open('batting.csv') as open_file:
