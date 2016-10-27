@@ -115,7 +115,11 @@ class Pitching(models.Model):
     sac_flies_allowed = models.CharField(max_length=50, blank=True, null=True)
     gidp = models.CharField(max_length=50, blank=True, null=True)
 
-    @property
-    def whip(self):
-        return round((int(self.walks.replace('', '0'))+int(self.intentonal_walk.replace('', '0'))+int(self.hits_allowed.replace('', '0')))/
-                      float(self.ipouts.replace('', '0')), 3)
+    # @property
+    # def whip(self):
+    #     return round((int(self.walks.replace('', '0'))+int(self.intentonal_walk.replace('', '0'))+int(self.hits_allowed.replace('', '0')))/
+    #                   float(self.ipouts.replace('', '0')), 3)
+
+    # @property
+    # def win_percentage(self):
+    #     return round(int(self.wins.replace('', '0'))/(int(self.wins.replace('', '0')+int(self.loss.replace('', '0')))), 3)

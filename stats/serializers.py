@@ -23,7 +23,8 @@ class FieldingSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PitchingSerializer(serializers.ModelSerializer):
-    whip = serializers.FloatField()
+    # whip = serializers.FloatField()
+    # win_percentage = serializers.FloatField()
 
     class Meta:
         model = Pitching
