@@ -51,7 +51,7 @@ def add_all_data(apps, schema_editor):
             player = Master.objects.get(player=info["playerID"])
             Pitching.objects.create(player=player, year=info["yearID"], stint=info["stint"], team=info["teamID"], league=info["lgID"],
                                    wins=info["W"], loss=info["L"], games=info["G"], games_started=info["GS"], complete_games=info["CG"],
-                                   shutout=info["SHO"], saves=info["SV"], ipouts=info["IPouts"], hits_allowed=["H"], earned_runs=info["ER"],
+                                   shutout=info["SHO"], saves=info["SV"], ipouts=info["IPouts"], hits_allowed=info["H"], earned_runs=info["ER"],
                                    homeruns_allowed=info["HR"], walks=info["BB"], strikeouts=info["SO"], opp_bat_avg=info["BAOpp"],
                                    era=info["ERA"], intentonal_walk=info["IBB"], wild_pitch=info["WP"], hit_by_pitch=info["HBP"],
                                    balks=info["BK"], batters_faced=info["BFP"], games_finished=info["GF"], runs_allowed=info["R"],

@@ -1,3 +1,4 @@
 from django.contrib import admin
+from stats.models import Master, Batting, Fielding, Pitching
 
-# Register your models here.
+admin.site.register([Master, Batting, Fielding, Pitching])

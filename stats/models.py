@@ -52,6 +52,17 @@ class Batting(models.Model):
     sac_fly = models.CharField(max_length=50, blank=True, null=True)
     gidp = models.CharField(max_length=50, blank=True, null=True)
 
+
+    @property
+    def on_base_percentage(self):
+        return round((int(self.hits.replace('', '0'))+int(self.walk.replace('', '0'))+int(self.hit_by_pitch.replace('', '0'))+int(self.intentonal_walk.replace('', '0')))/
+                (int(self.at_bats.replace('', '0'))+int(self.walk.replace('', '0'))+int(self.hit_by_pitch.replace('', '0'))+int(self.sac_fly.replace('', '0'))), 3)
+
+    @property
+    def batting_avg(self):
+        return round((int(self.hits)/int(self.at_bats)), 3)
+
+
 class Fielding(models.Model):
     player = models.ForeignKey(Master)
     year = models.CharField(max_length=50, blank=True, null=True)
@@ -103,3 +114,8 @@ class Pitching(models.Model):
     sac_hits_allowed = models.CharField(max_length=50, blank=True, null=True)
     sac_flies_allowed = models.CharField(max_length=50, blank=True, null=True)
     gidp = models.CharField(max_length=50, blank=True, null=True)
+
+    @property
+    def whip(self):
+        return round((int(self.walks.replace('', '0'))+int(self.intentonal_walk.replace('', '0'))+int(self.hits_allowed.replace('', '0')))/
+                      float(self.ipouts.replace('', '0')), 3)

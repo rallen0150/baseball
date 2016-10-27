@@ -16,6 +16,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from stats.views import MasterListCreateAPIView, MasterDetailUpdateDestroyAPIView, BattingListCreateAPIView, \
+                        BattingDetailUpdateDestroyAPIView, FieldingListCreateAPIView, FieldingDetailUpdateDestroyAPIView, \
+                        PitchingListCreateAPIView, PitchingDetailUpdateDestroyAPIView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/master/$', MasterListCreateAPIView.as_view(), name="master_list_create_view"),
+    url(r'^api/master/(?P<pk>\d+)/$', MasterDetailUpdateDestroyAPIView.as_view(), name="master_detail_update_destroy_view"),
+    url(r'^api/batting/$', BattingListCreateAPIView.as_view(), name="batting_list_create_view"),
+    url(r'^api/batting/(?P<pk>\d+)/$', BattingDetailUpdateDestroyAPIView.as_view(), name="batting_detail_update_destroy_view"),
+    url(r'^api/fielding/$', FieldingListCreateAPIView.as_view(), name="fielding_list_create_view"),
+    url(r'^api/fielding/(?P<pk>\d+)/$', FieldingDetailUpdateDestroyAPIView.as_view(), name="fielding_detail_update_destroy_view"),
+    url(r'^api/pitching/$', PitchingListCreateAPIView.as_view(), name="pitching_list_create_view"),
+    url(r'^api/pitching/(?P<pk>\d+)/$', PitchingDetailUpdateDestroyAPIView.as_view(), name="pitching_detail_update_destroy_view"),
 ]
