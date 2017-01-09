@@ -44,7 +44,7 @@ def add_all_data(apps, schema_editor):
             player = Master.objects.get(player=info["playerID"])
             Fielding.objects.create(player=player, year=info["yearID"], stint=info["stint"], team=info["teamID"], league=info["lgID"],
                                 position=info["POS"], games=info["G"], games_started=info["GS"], innings=info["InnOuts"], put_out=info["PO"],
-                                assists=info["A"], errors=info["E"], double_play=["DP"], pass_ball=info["PB"], wild_ball=info["WP"],
+                                assists=info["A"], errors=info["E"], double_play=info["DP"], pass_ball=info["PB"], wild_ball=info["WP"],
                                 stolen_base=info["SB"], caught_stealing=info["CS"], zone_rating=info["ZR"])
     # raise Exception ("3rd BOOM!")
 

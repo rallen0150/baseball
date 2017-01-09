@@ -62,6 +62,17 @@ class Batting(models.Model):
     def batting_avg(self):
         return round((int(self.hits)/int(self.at_bats)), 3)
 
+    @property
+    def slugging_percentage(self):
+        return round(((2*int(self.doubles))+(3*int(self.triples))+(4*int(self.homeruns))+(int(self.hits)-int(self.doubles)-int(self.triples)-int(self.homeruns)))/int(self.at_bats), 3)
+
+    @property
+    def stolen_base_pecentage(self):
+        return round(int(self.steals)/(int(self.steals)+int(self.caught)), 3)
+
+    @property
+    def walk_to_strikeout_ratio(self):
+        return round((int(self.walk.replace('','0'))+int(self.intentonal_walk.replace('','0')))/(int(self.walk.replace('','0'))+int(self.intentonal_walk.replace('','0'))+int(self.strikeout.replace('','0'))), 3)
 
 class Fielding(models.Model):
     player = models.ForeignKey(Master)
@@ -82,6 +93,10 @@ class Fielding(models.Model):
     stolen_base = models.CharField(max_length=50, blank=True, null=True)
     caught_stealing = models.CharField(max_length=50, blank=True, null=True)
     zone_rating = models.CharField(max_length=50, blank=True, null=True)
+
+    @property
+    def fielding_percentage(self):
+        return round(((int(self.put_out)+int(self.assists))/(int(self.errors)+int(self.put_out)+int(self.assists))), 3)
 
 class Pitching(models.Model):
     player = models.ForeignKey(Master)
@@ -115,11 +130,11 @@ class Pitching(models.Model):
     sac_flies_allowed = models.CharField(max_length=50, blank=True, null=True)
     gidp = models.CharField(max_length=50, blank=True, null=True)
 
-    # @property
-    # def whip(self):
-    #     return round((int(self.walks.replace('', '0'))+int(self.intentonal_walk.replace('', '0'))+int(self.hits_allowed.replace('', '0')))/
-    #                   float(self.ipouts.replace('', '0')), 3)
+    @property
+    def whip(self):
+        return round((int(self.walks.replace('', '0'))+int(self.intentonal_walk.replace('', '0'))+int(self.hits_allowed.replace('', '0')))/
+                      float(self.ipouts.replace('', '0')), 3)
 
-    # @property
-    # def win_percentage(self):
-    #     return round(int(self.wins.replace('', '0'))/(int(self.wins.replace('', '0')+int(self.loss.replace('', '0')))), 3)
+    @property
+    def win_percentage(self):
+        return round(int(self.wins.replace('', '0'))/(int(self.wins)+int(self.loss.replace('', '0'))), 3)

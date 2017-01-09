@@ -11,20 +11,24 @@ class MasterSerializer(serializers.ModelSerializer):
 class BattingSerializer(serializers.ModelSerializer):
     on_base_percentage = serializers.FloatField()
     batting_avg = serializers.FloatField()
+    slugging_percentage = serializers.FloatField()
+    stolen_base_pecentage = serializers.FloatField()
+    walk_to_strikeout_ratio = serializers.FloatField()
 
     class Meta:
         model = Batting
         fields = '__all__'
 
 class FieldingSerializer(serializers.ModelSerializer):
+    fielding_percentage = serializers.FloatField()
 
     class Meta:
         model = Fielding
         fields = '__all__'
 
 class PitchingSerializer(serializers.ModelSerializer):
-    # whip = serializers.FloatField()
-    # win_percentage = serializers.FloatField()
+    whip = serializers.FloatField()
+    win_percentage = serializers.FloatField()
 
     class Meta:
         model = Pitching
